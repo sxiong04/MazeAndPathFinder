@@ -1,6 +1,7 @@
 // Names: Samantha Xiong, Alex Xiong
 // x500s: xion1884, xion1889
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -63,19 +64,48 @@ public class MyMaze{
 
     /* TODO: Print a representation of the maze to the terminal */
     public void printMaze() {
+        String[][] printMaze = new String[maze.length*2 + 1][maze[0].length];
+        for (int i = 0; i < printMaze.length; i++) {
+            for (int j = 0; j < printMaze[0].length; j++) {
+                //printMaze[i][j] = "(" + i + "," + j + ")";
+                if (i == 0 || i == printMaze.length - 1 || i % 2 == 0) {
+                    printMaze[i][j] = "|---";
+                } else {
+                    printMaze[i][j] = "|   ";
+                }
+            }
+        }
+        printMaze[printMaze.length - 2][printMaze[0].length - 1] = "|   ";
+        printMaze[1][0] = "    ";
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
-                System.out.print("-".repeat(3));
+                if (!maze[i][j].getRight()) {
+                    printMaze[i*2+1][j] = "    ";
+                }
+                if (!maze[i][j].getBottom()) {
+                    printMaze[i*2+2][j] = "|   ";
+                }
             }
-            System.out.println();
+        }
+        for (int i = 0; i < printMaze.length; i++) {
+            for (int j  = 0; j < printMaze[0].length; j++) {
+                System.out.print(printMaze[i][j]);
+            }
+            if (i != printMaze.length - 2) {
+                System.out.println("|");
+            } else {
+                System.out.println();
+            }
+
         }
     }
+
 
     /* TODO: Solve the maze using the algorithm found in the writeup. */
     public void solveMaze() {
     }
 
     public static void main(String[] args){
-        makeMaze(5, 21);
+        makeMaze(5, 20);
     }
 }
