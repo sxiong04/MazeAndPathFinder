@@ -71,19 +71,19 @@ public class MyMaze{
                 if (i == 0 || i == printMaze.length - 1 || i % 2 == 0) {
                     printMaze[i][j] = "|---";
                 } else {
-                    printMaze[i][j] = "|   ";
+                    printMaze[i][j] = "| " + maze[(i-1)/2][j].isVisited() + " ";
                 }
             }
         }
         printMaze[printMaze.length - 2][printMaze[0].length - 1] = "|   ";
-        printMaze[1][0] = "    ";
+        printMaze[1][0] = "  " + maze[0][1].isVisited() + " ";
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 if (!maze[i][j].getRight()) {
-                    printMaze[i*2+1][j] = "    ";
+                    printMaze[i*2+1][j] = "  " + maze[i][j].isVisited() + " ";
                 }
                 if (!maze[i][j].getBottom()) {
-                    printMaze[i*2+2][j] = "|   ";
+                    printMaze[i*2+2][j] = "| " + maze[i][j].isVisited() + " ";
                 }
             }
         }
