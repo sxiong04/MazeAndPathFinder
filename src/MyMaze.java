@@ -15,6 +15,7 @@ public class MyMaze{
         }
     }
 
+
     /* TODO: Create a new maze using the algorithm found in the writeup. */
     public static MyMaze makeMaze(int rows, int cols) {
         MyMaze maze = new MyMaze(rows, cols);
@@ -73,11 +74,6 @@ public class MyMaze{
                 maze.maze[i][j].setVisited(false);
             }
         }
-        maze.solveMaze();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
         return maze;
     }
 
@@ -151,7 +147,10 @@ public class MyMaze{
 
     public static void main(String[] args){
         for (int i = 0; i < 4; i++) {
-            makeMaze(21, 21);
+            Random random = new Random();
+            int row = random.nextInt(50);
+            int col = random.nextInt(50);
+            makeMaze(row, col).solveMaze();
         }
     }
 }
