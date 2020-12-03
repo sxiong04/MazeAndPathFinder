@@ -23,34 +23,51 @@ public class MyMaze{
         Stack1Gen<Cell> stack = new Stack1Gen<>();
         stack.push(maze.maze[0][0]);
         maze.maze[0][0].setVisited(true);
-
         Random random = new Random();
+        boolean[] visited = new boolean[] {false, false, false, false};
         while (!stack.isEmpty()) {
             Cell top = stack.top();
-            int neighborCell = random.nextInt(4);
-            if (neighborCell == 0 && top.getRow() > 0 && !maze.maze[top.getRow() - 1][top.getCol()].getVisited() && top.getRow() - 1 >= 0){
-                stack.push(maze.maze[top.getRow() - 1][top.getCol()]);
-                maze.maze[top.getRow() - 1][top.getCol()].setVisited(true);
-                maze.maze[top.getRow() - 1][top.getCol()].setBottom(false);
-            } // neighbor above
-            else if (neighborCell == 1 && top.getCol() < cols - 1 && !maze.maze[top.getRow()][top.getCol() +1].getVisited()) {
-                stack.push(maze.maze[top.getRow()][top.getCol() +1]);
-                maze.maze[top.getRow()][top.getCol() +1].setVisited(true);
-                maze.maze[top.getRow()][top.getCol() +1].setRight(false);
-            } // neighbor right
-            else if (neighborCell == 2 && top.getRow() < rows - 1 && !maze.maze[top.getRow() + 1][top.getCol()].getVisited()) {
-                stack.push(maze.maze[top.getRow() + 1][top.getCol()]);
-                maze.maze[top.getRow() + 1][top.getCol()].setVisited(true);
-                top.setBottom(false);
-            } // neighbor below
-            else if (neighborCell == 3 && top.getCol() > 0 && !maze.maze[top.getRow()][top.getCol() - 1].getVisited() && top.getCol() - 1 >= 0) {
-                stack.push(maze.maze[top.getRow()][top.getCol() - 1]);
-                maze.maze[top.getRow()][top.getCol() - 1].setVisited(true);
-                top.setRight(false);
-            } // neighbor left
-            else {
+            int next  = random.nextInt(4);
+            if (visited[0] && visited[1] && visited[2] && visited[3]) {
                 stack.pop();
-            } // pop cell
+                visited = new boolean[] {false, false, false, false};
+            }
+            if (next == 0 && !visited[0]) {
+                visited[0] = true;
+                if (top.getRow() > 0 && !maze.maze[top.getRow() - 1][top.getCol()].getVisited() && top.getRow() - 1 >= 0) {
+                    stack.push(maze.maze[top.getRow() - 1][top.getCol()]);
+                    maze.maze[top.getRow() - 1][top.getCol()].setVisited(true);
+                    maze.maze[top.getRow() - 1][top.getCol()].setBottom(false);
+                    System.out.println("above");
+                }
+            }
+            else if (next == 1 && !visited[1]) {
+                visited[1] = true;
+                if (top.getCol() < cols - 1 && !maze.maze[top.getRow()][top.getCol() +1].getVisited()) {
+                    stack.push(maze.maze[top.getRow()][top.getCol() +1]);
+                    maze.maze[top.getRow()][top.getCol() +1].setVisited(true);
+                    maze.maze[top.getRow()][top.getCol() +1].setRight(false);
+                    System.out.println("right");
+                }
+            }
+            else if (next == 2 && !visited[2]) {
+                visited[2] = true;
+                if (top.getRow() < rows - 1 && !maze.maze[top.getRow() + 1][top.getCol()].getVisited()) {
+                    stack.push(maze.maze[top.getRow() + 1][top.getCol()]);
+                    maze.maze[top.getRow() + 1][top.getCol()].setVisited(true);
+                    top.setBottom(false);
+                    System.out.println("below");
+                }
+            }
+            else if (next == 3 && !visited[3]) {
+                visited[3] = true;
+                if (top.getCol() > 0 && !maze.maze[top.getRow()][top.getCol() - 1].getVisited() && top.getCol() - 1 >= 0) {
+                    stack.push(maze.maze[top.getRow()][top.getCol() - 1]);
+                    maze.maze[top.getRow()][top.getCol() - 1].setVisited(true);
+                    top.setRight(false);
+                    System.out.println("left");
+                }
+            }
         }
 
 //        for (int i = 0; i < maze.maze.length; i++) {

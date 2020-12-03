@@ -41,7 +41,7 @@ public class Cell {
     public int getCol() { return col; }
     public int getRow() {return row; }
     public String isVisited() {
-        if (getVisited() == true) {
+        if (getVisited()) {
             return "*";
         } else {
             return " ";
