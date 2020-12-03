@@ -1,8 +1,6 @@
 // Names: Samantha Xiong, Alex Xiong
 // x500s: xion1884, xion1889
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Random;
 
 public class MyMaze{
@@ -31,7 +29,7 @@ public class MyMaze{
             if (visited[0] && visited[1] && visited[2] && visited[3]) {
                 stack.pop();
                 visited = new boolean[] {false, false, false, false};
-            }
+            } // pop
             if (next == 0 && !visited[0]) {
                 visited[0] = true;
                 if (top.getRow() > 0 && !maze.maze[top.getRow() - 1][top.getCol()].getVisited() && top.getRow() - 1 >= 0) {
@@ -75,7 +73,7 @@ public class MyMaze{
                 maze.maze[i][j].setVisited(false);
             }
         }
-        maze.printMaze();
+        maze.solveMaze();
         System.out.println();
         System.out.println();
         System.out.println();
@@ -89,7 +87,7 @@ public class MyMaze{
         for (int i = 0; i < printMaze.length; i++) {
             for (int j = 0; j < printMaze[0].length; j++) {
                 //printMaze[i][j] = "(" + i + "," + j + ")";
-                if (i == 0 || i == printMaze.length - 1 || i % 2 == 0) {
+                if (i == printMaze.length - 1 || i % 2 == 0) {
                     printMaze[i][j] = "|---";
                 } else {
                     printMaze[i][j] = "| " + maze[(i-1)/2][j].isVisited() + " ";
@@ -126,12 +124,34 @@ public class MyMaze{
         Q1Gen<Cell> queue = new Q1Gen<>();
         queue.add(maze[0][0]);
         while(!queue.isEmpty()) {
+            Cell current = queue.remove();
+            if (current.getRow() == maze.length - 1 && current.getCol() == maze[0].length - 1) {
+                break;
+            } else {
+                if (current.getRow() > 0 && !maze[current.getRow() - 1][current.getCol()].getVisited() && current.getRow() - 1 >= 0 && !maze[current.getRow() - 1][current.getCol()].getBottom()) {
+                    maze[current.getRow() - 1][current.getCol()].setVisited(true);
+                    queue.add(maze[current.getRow() - 1][current.getCol()]);
+                } //top
+                if (current.getCol() > 0 && !maze[current.getRow()][current.getCol() - 1].getVisited() && !current.getRight()) {
+                    maze[current.getRow()][current.getCol() - 1].setVisited(true);
+                    queue.add(maze[current.getRow()][current.getCol() - 1]);
+                } // lft
+                if (current.getCol() < maze[0].length - 1 && !maze[current.getRow()][current.getCol() +1].getVisited() && !maze[current.getRow()][current.getCol() +1].getRight()) {
+                    maze[current.getRow()][current.getCol() +1].setVisited(true);
+                    queue.add(maze[current.getRow()][current.getCol() +1]);
+                } // rgt
+                if (current.getRow() < maze.length - 1 && !maze[current.getRow() + 1][current.getCol()].getVisited() && !current.getBottom()) {
+                    maze[current.getRow() + 1][current.getCol()].setVisited(true);
+                    queue.add(maze[current.getRow() + 1][current.getCol()]);
+                } //btm
+            }
+            printMaze();
         }
     }
 
     public static void main(String[] args){
-        for (int i = 0; i < 10; i++) {
-            makeMaze(25, 25);
+        for (int i = 0; i < 1; i++) {
+            makeMaze(5, 21);
         }
     }
 }
