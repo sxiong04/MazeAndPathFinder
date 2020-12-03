@@ -70,12 +70,15 @@ public class MyMaze{
             } // lft
         }
 
-//        for (int i = 0; i < maze.maze.length; i++) {
-//            for (int j = 0; j < maze.maze[i].length; j++) {
-//                maze.maze[i][j].setVisited(false);
-//            }
-//        }
+        for (int i = 0; i < maze.maze.length; i++) {
+            for (int j = 0; j < maze.maze[i].length; j++) {
+                maze.maze[i][j].setVisited(false);
+            }
+        }
         maze.printMaze();
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println();
         return maze;
     }
@@ -120,11 +123,15 @@ public class MyMaze{
 
     /* TODO: Solve the maze using the algorithm found in the writeup. */
     public void solveMaze() {
+        Q1Gen<Cell> queue = new Q1Gen<>();
+        queue.add(maze[0][0]);
+        while(!queue.isEmpty()) {
+        }
     }
 
     public static void main(String[] args){
         for (int i = 0; i < 10; i++) {
-            makeMaze(5, 20);
+            makeMaze(25, 25);
         }
     }
 }
