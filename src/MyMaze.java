@@ -75,18 +75,18 @@ public class MyMaze{
                 }
             }
         }
-        printMaze[printMaze.length - 2][printMaze[0].length - 1] = "|   ";
-        printMaze[1][0] = "  " + maze[0][1].isVisited() + " ";
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 if (!maze[i][j].getRight()) {
                     printMaze[i*2+1][j] = "  " + maze[i][j].isVisited() + " ";
                 }
                 if (!maze[i][j].getBottom()) {
-                    printMaze[i*2+2][j] = "| " + maze[i][j].isVisited() + " ";
+                    printMaze[i*2+2][j] = "|   ";
                 }
             }
         }
+        printMaze[printMaze.length - 2][printMaze[0].length - 1] = "|   ";
+        printMaze[1][0] = "  " + maze[0][1].isVisited() + " ";
         for (int i = 0; i < printMaze.length; i++) {
             for (int j  = 0; j < printMaze[0].length; j++) {
                 System.out.print(printMaze[i][j]);

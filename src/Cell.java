@@ -40,4 +40,11 @@ public class Cell {
     public boolean getBottom() { return bottom; }
     public int getCol() { return col; }
     public int getRow() {return row; }
+    public String isVisited() {
+        if (getVisited() == true) {
+            return "*";
+        } else {
+            return " ";
+        }
+    }
 }
