@@ -145,13 +145,13 @@ public class MyMaze{
                     queue.add(maze[current.getRow() + 1][current.getCol()]);
                 } //btm
             }
-            printMaze();
         }
+        printMaze();
     }
 
     public static void main(String[] args){
-        for (int i = 0; i < 1; i++) {
-            makeMaze(5, 21);
+        for (int i = 0; i < 4; i++) {
+            makeMaze(21, 21);
         }
     }
 }
