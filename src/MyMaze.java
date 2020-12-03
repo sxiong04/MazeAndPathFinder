@@ -38,36 +38,36 @@ public class MyMaze{
                     stack.push(maze.maze[top.getRow() - 1][top.getCol()]);
                     maze.maze[top.getRow() - 1][top.getCol()].setVisited(true);
                     maze.maze[top.getRow() - 1][top.getCol()].setBottom(false);
-                    System.out.println("above");
+                    visited = new boolean[] {false, false, false, false};
                 }
-            }
+            } // top
             else if (next == 1 && !visited[1]) {
                 visited[1] = true;
                 if (top.getCol() < cols - 1 && !maze.maze[top.getRow()][top.getCol() +1].getVisited()) {
                     stack.push(maze.maze[top.getRow()][top.getCol() +1]);
                     maze.maze[top.getRow()][top.getCol() +1].setVisited(true);
                     maze.maze[top.getRow()][top.getCol() +1].setRight(false);
-                    System.out.println("right");
+                    visited = new boolean[] {false, false, false, false};
                 }
-            }
+            } // rgt
             else if (next == 2 && !visited[2]) {
                 visited[2] = true;
                 if (top.getRow() < rows - 1 && !maze.maze[top.getRow() + 1][top.getCol()].getVisited()) {
                     stack.push(maze.maze[top.getRow() + 1][top.getCol()]);
                     maze.maze[top.getRow() + 1][top.getCol()].setVisited(true);
                     top.setBottom(false);
-                    System.out.println("below");
+                    visited = new boolean[] {false, false, false, false};
                 }
-            }
+            } // btm
             else if (next == 3 && !visited[3]) {
                 visited[3] = true;
                 if (top.getCol() > 0 && !maze.maze[top.getRow()][top.getCol() - 1].getVisited() && top.getCol() - 1 >= 0) {
                     stack.push(maze.maze[top.getRow()][top.getCol() - 1]);
                     maze.maze[top.getRow()][top.getCol() - 1].setVisited(true);
                     top.setRight(false);
-                    System.out.println("left");
+                    visited = new boolean[] {false, false, false, false};
                 }
-            }
+            } // lft
         }
 
 //        for (int i = 0; i < maze.maze.length; i++) {
@@ -76,6 +76,7 @@ public class MyMaze{
 //            }
 //        }
         maze.printMaze();
+        System.out.println();
         return maze;
     }
 
@@ -102,7 +103,6 @@ public class MyMaze{
                 }
             }
         }
-        printMaze[printMaze.length - 2][printMaze[0].length - 1] = "|   ";
         printMaze[1][0] = "  " + maze[0][1].isVisited() + " ";
         for (int i = 0; i < printMaze.length; i++) {
             for (int j  = 0; j < printMaze[0].length; j++) {
@@ -123,6 +123,8 @@ public class MyMaze{
     }
 
     public static void main(String[] args){
-        makeMaze(5, 20);
+        for (int i = 0; i < 10; i++) {
+            makeMaze(5, 20);
+        }
     }
 }
