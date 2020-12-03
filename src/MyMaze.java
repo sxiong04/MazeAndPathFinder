@@ -146,11 +146,13 @@ public class MyMaze{
     }
 
     public static void main(String[] args){
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 20; i++) {
             Random random = new Random();
             int row = random.nextInt(50);
             int col = random.nextInt(50);
-            makeMaze(row, col).solveMaze();
+            makeMaze(5, 5).solveMaze();
+            System.out.println();
+            System.out.println();
         }
     }
 }
