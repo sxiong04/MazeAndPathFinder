@@ -15,8 +15,7 @@ Additional Features:
 - n/a
 
 Bugs/Defects:
-- rarely, when maze is printed, [0][0] does not have "*", meaning it has not been visited
+- rarely, when maze is printed, [0][0] does not have "*"
 
 Credit:
-- https://www.usna.edu/Users/cs/aviv/classes/ic312/f16/project/01/project.html
-- https://en.wikipedia.org/wiki/Maze_generation_algorithm#Depth-first_search
+- n/a
