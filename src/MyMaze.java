@@ -2,6 +2,7 @@
 // x500s: xion1884, xion1889
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class MyMaze{
     Cell[][] maze;
@@ -146,13 +147,13 @@ public class MyMaze{
     }
 
     public static void main(String[] args){
-        for (int i = 0; i < 20; i++) {
-            Random random = new Random();
-            int row = random.nextInt(50);
-            int col = random.nextInt(50);
-            makeMaze(5, 5).solveMaze();
-            System.out.println();
-            System.out.println();
-        }
+        Scanner s = new Scanner(System.in);
+        int col;
+        int row;
+        System.out.print("What would you like the length of the maze to be: ");
+        col = Integer.parseInt(s.next());
+        System.out.print("What would you like the width of the maze to be: ");
+        row = Integer.parseInt(s.next());
+        makeMaze(row, col).solveMaze();
     }
 }
